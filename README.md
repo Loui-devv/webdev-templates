@@ -1,21 +1,21 @@
 # Web Dev Templates
 
-Base template at mga variant para sa freelance web dev — landing pages para sa small businesses sa Pilipinas.
+Base template and variants for freelance web dev — landing pages for small businesses in the Philippines.
 
 ## Structure
 
-- `base/template.html` — ang source of truth. Huwag babaguhin ito kada client.
-- `variants/` — mga skin ng base template para sa specific na industriya (portfolio pieces).
+- `base/template.html` — the source of truth. Never edit this directly per client.
+- `variants/` — skins of the base template for specific industries (portfolio pieces).
 - `assets/` — shared placeholder images/logos.
 
-## Paano gumawa ng bagong bersyon para sa client
+## How to build a new version for a client
 
-1. Kopyahin ang `base/template.html` papunta sa bagong folder (huwag sa `variants/` — gumawa ng `clients/[pangalan-ng-client]/`).
-2. Baguhin lang ang mga `[...]` placeholder text.
-3. I-adjust ang `:root { }` CSS variables sa taas para sa kulay ng brand.
-4. Tanggalin ang mga section na hindi kailangan (hal. testimonials).
-5. Palitan ang placeholder images ng totoong larawan.
+1. Copy `base/template.html` into a new folder (not inside `variants/` — create `clients/[client-name]/` instead).
+2. Fill in the `[...]` placeholder text.
+3. Adjust the `:root { }` CSS variables at the top for the client's brand colors.
+4. Remove any sections that aren't needed (e.g. testimonials).
+5. Replace placeholder images with real photos.
 
 ## Stack
 
-Plain HTML/CSS/JS lang — walang framework, walang build step. Puwedeng i-host sa GitHub Pages, Netlify, o kahit shared hosting.
+Plain HTML/CSS/JS — no framework, no build step. Can be hosted on GitHub Pages, Netlify, or any shared hosting.
