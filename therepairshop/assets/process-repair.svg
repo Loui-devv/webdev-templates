@@ -1,0 +1,7 @@
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+<rect width="300" height="300" fill="#ECECEC"/>
+<path d="M110 90 L150 130 L130 150 L90 110 Z" fill="none" stroke="#161616" stroke-width="2.5" opacity="0.75"/>
+<path d="M150 130 L200 180" stroke="#C41E2E" stroke-width="4" stroke-linecap="round"/>
+<circle cx="200" cy="180" r="10" fill="none" stroke="#C41E2E" stroke-width="3"/>
+<text x="150" y="250" text-anchor="middle" font-family="'Space Mono',monospace" font-size="16" letter-spacing="3" fill="#161616">REPAIR</text>
+</svg>

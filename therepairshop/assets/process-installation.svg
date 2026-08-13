@@ -1,0 +1,8 @@
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+<rect width="300" height="300" fill="#ECECEC"/>
+<rect x="80" y="80" width="140" height="50" rx="4" fill="none" stroke="#161616" stroke-width="2.5" opacity="0.75"/>
+<line x1="150" y1="130" x2="150" y2="175" stroke="#C41E2E" stroke-width="4"/>
+<path d="M135 160 L150 178 L165 160" fill="none" stroke="#C41E2E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="110" y1="200" x2="190" y2="200" stroke="#9AA0A6" stroke-width="3" opacity="0.6"/>
+<text x="150" y="250" text-anchor="middle" font-family="'Space Mono',monospace" font-size="16" letter-spacing="3" fill="#161616">INSTALLATION</text>
+</svg>
