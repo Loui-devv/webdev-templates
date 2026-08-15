@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imperial Salon & Spa — Mabalacat City</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#141110;
+  --paper:#FBF9F5;
+  --paper-2:#EFE8DA;
+  --accent:#B8912F;
+  --accent-dark:#93731F;
+  --gold:#D9B65C;
+  --muted:#655C4E;
+  --line:rgba(20,17,16,0.14);
+  --font-display:'Fraunces', serif;
+  --font-body:'Inter', sans-serif;
+  --font-mono:'Space Mono', monospace;
+  --radius:2px;
+  --max-w:1180px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+.wrap{max-width:var(--max-w);margin:0 auto;padding:0 32px;}
+@media(max-width:640px){.wrap{padding:0 20px;}}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.1;letter-spacing:-0.01em;}
+.eyebrow{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent);}
+a:focus-visible, button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}*{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}}
+
+.rail{position:fixed;right:28px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:18px;align-items:flex-end;}
+.rail-item{display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;color:var(--muted);transition:color .25s ease;}
+.rail-item .dot{width:6px;height:6px;border-radius:50%;background:var(--muted);transition:all .25s ease;}
+.rail-item.active{color:var(--ink);}
+.rail-item.active .dot{background:var(--accent);width:9px;height:9px;box-shadow:0 0 0 3px rgba(184,145,47,0.18);}
+.rail-item .label{opacity:0;transform:translateX(6px);transition:all .2s ease;white-space:nowrap;}
+.rail-item:hover .label,.rail-item.active .label{opacity:1;transform:translateX(0);}
+@media(max-width:900px){.rail{display:none;}}
+
+.topbar{position:sticky;top:0;z-index:90;background:rgba(251,249,245,0.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 32px;max-width:var(--max-w);margin:0 auto;flex-wrap:nowrap;}
+.brand{font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
+.brand span{color:var(--accent);}
+.topbar-cta{font-family:var(--font-mono);font-size:12px;padding:10px 18px;background:var(--ink);color:var(--paper);border-radius:var(--radius);transition:background .2s ease;white-space:nowrap;flex-shrink:0;}
+.topbar-cta:hover{background:var(--accent-dark);}
+@media(max-width:480px){
+  .topbar-inner{padding:10px 16px;gap:8px;}
+  .brand{font-size:14px;}
+  .topbar-cta{font-size:10.5px;padding:8px 12px;}
+  .topbar-cta .arrow{display:none;}
+}
+
+.hero{padding:90px 0 70px;position:relative;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.hero h1{font-size:clamp(30px,5vw,52px);margin:16px 0 20px;}
+.hero p{font-size:17px;color:var(--muted);margin-bottom:26px;}
+.cta-group{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px;}
+.btn-primary{font-family:var(--font-mono);font-size:13px;background:var(--ink);color:var(--paper);padding:14px 26px;border-radius:var(--radius);transition:background .2s ease;text-align:center;}
+.btn-primary:hover{background:var(--accent-dark);}
+.btn-secondary{font-family:var(--font-mono);font-size:13px;padding:14px 26px;border:1px solid var(--ink);border-radius:var(--radius);transition:all .2s ease;text-align:center;}
+.btn-secondary:hover{background:var(--ink);color:var(--paper);}
+.hero-photo{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);}
+.hero-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:9/7;}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:32px;}}
+
+.badges{display:flex;gap:10px;flex-wrap:wrap;}
+.badge{display:flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;color:var(--muted);border:1px solid var(--line);padding:7px 12px;border-radius:20px;background:var(--paper-2);white-space:nowrap;}
+.badge .chk{color:var(--accent);font-weight:700;}
+@media(max-width:480px){.cta-group{flex-direction:column;} .cta-group a{width:100%;} .badge{font-size:10px;padding:6px 10px;}}
+
+section{padding:76px 0;border-top:1px solid var(--line);}
+.section-head{max-width:600px;margin-bottom:44px;}
+.section-head h2{font-size:clamp(26px,3.6vw,36px);margin-top:12px;}
+@media(max-width:480px){section{padding:52px 0;} .section-head{margin-bottom:28px;}}
+
+.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
+.price-col{background:var(--paper);padding:30px 28px;}
+.price-col h3{font-family:var(--font-mono);font-size:13px;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:18px;color:var(--accent);}
+.price-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:14.5px;}
+.price-row:first-of-type{border-top:none;}
+.price-row .amt{font-family:var(--font-mono);color:var(--muted);white-space:nowrap;}
+@media(max-width:700px){.price-grid{grid-template-columns:1fr;}}
+
+.promo-strip{background:var(--ink);color:var(--paper);padding:56px 0;}
+.promo-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(251,249,245,0.15);}
+.promo-card{background:var(--ink);padding:26px 24px;text-align:center;}
+.promo-card .label{font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;color:var(--gold);text-transform:uppercase;}
+.promo-card h3{font-size:18px;margin:10px 0 6px;color:var(--paper);}
+.promo-card .price{font-family:var(--font-display);font-size:42px;color:var(--gold);margin:8px 0;}
+@media(max-width:600px){.promo-grid{grid-template-columns:1fr;}}
+
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.gallery-grid img{border-radius:var(--radius);width:100%;height:100%;object-fit:cover;transition:transform .3s ease;}
+.gallery-grid .tile{aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--line);}
+.gallery-grid .tile:hover img{transform:scale(1.05);}
+@media(max-width:800px){.gallery-grid{grid-template-columns:1fr 1fr;}}
+
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+.contact-info .item{margin-bottom:20px;}
+.contact-info .item .eyebrow{display:block;margin-bottom:4px;}
+.contact-info .item p{font-size:16px;}
+.art-box{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+@media(max-width:800px){.contact-grid{grid-template-columns:1fr;}}
+
+footer{padding:36px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-family:var(--font-mono);font-size:12px;color:var(--muted);flex-wrap:wrap;gap:12px;}
+@media(max-width:480px){footer{flex-direction:column;align-items:flex-start;font-size:11px;}}
+</style>
+</head>
+<body>
+
+<nav class="rail" id="rail">
+  <a class="rail-item" data-target="hero"><span class="label">Start</span><span class="dot"></span></a>
+  <a class="rail-item" data-target="services"><span class="label">Services</span><span class="dot"></span></a>
+  <a class="rail-item" data-target="promo"><span class="label">Promos</span><span class="dot"></span></a>
+  <a class="rail-item" data-target="gallery"><span class="label">Gallery</span><span class="dot"></span></a>
+  <a class="rail-item" data-target="contact"><span class="label">Contact</span><span class="dot"></span></a>
+</nav>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">Imperial <span>Salon &amp; Spa</span></div>
+    <a href="tel:+639950950578" class="topbar-cta">Book Now <span class="arrow">→</span></a>
+  </div>
+</div>
+
+<section id="hero" class="hero" style="border-top:none;">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-inner">
+        <span class="eyebrow">Lakandula, Mabalacat City</span>
+        <h1>Beauty that's timeless. Confidence that's you.</h1>
+        <p>Full-service hair and nail salon offering cuts, color, treatments, manicure, pedicure, and spa services — premium quality, professional care.</p>
+        <div class="cta-group">
+          <a href="tel:+639950950578" class="btn-primary">Book Now</a>
+          <a href="#services" class="btn-secondary">See Price List</a>
+        </div>
+        <div class="badges">
+          <span class="badge"><span class="chk">✓</span> Premium Quality</span>
+          <span class="badge"><span class="chk">✓</span> Professional Service</span>
+          <span class="badge"><span class="chk">✓</span> Relax &amp; Unwind</span>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="assets/hero-photo.jpg" alt="Stylist at work inside Imperial Salon & Spa">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Single Price — Starting Price</span>
+      <h2>Our Services</h2>
+    </div>
+    <div class="price-grid">
+      <div class="price-col">
+        <h3>Hair Services</h3>
+        <div class="price-row"><span>Haircut</span><span class="amt">₱200</span></div>
+        <div class="price-row"><span>Hair Spa</span><span class="amt">₱499</span></div>
+        <div class="price-row"><span>Basic Color (Short Cut)</span><span class="amt">₱799</span></div>
+        <div class="price-row"><span>Highlights</span><span class="amt">₱1,499</span></div>
+        <div class="price-row"><span>Fashion Color (Shoulder Level)</span><span class="amt">₱1,499</span></div>
+        <div class="price-row"><span>Balayage</span><span class="amt">₱3,499</span></div>
+        <div class="price-row"><span>Rebond</span><span class="amt">₱1,499</span></div>
+        <div class="price-row"><span>Botox</span><span class="amt">₱1,499</span></div>
+        <div class="price-row"><span>Brazilian</span><span class="amt">₱1,499</span></div>
+      </div>
+      <div class="price-col">
+        <h3>Nail Services</h3>
+        <div class="price-row"><span>Manicure</span><span class="amt">₱150</span></div>
+        <div class="price-row"><span>Pedicure</span><span class="amt">₱200</span></div>
+        <div class="price-row"><span>Gel Polish</span><span class="amt">₱450</span></div>
+        <div class="price-row"><span>Soft Gel Extension (Any Design)</span><span class="amt">₱1,000</span></div>
+        <div class="price-row"><span>Add-ons (Stones)</span><span class="amt">₱50</span></div>
+        <div class="price-row"><span>Foot Spa</span><span class="amt">₱300</span></div>
+        <div class="price-row"><span>Foot Massage</span><span class="amt">₱300</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="promo" class="promo-strip" style="border-top:none;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow" style="color:var(--gold);">Limited Time Offer</span>
+      <h2 style="color:var(--paper);">Exclusive Promo Deals</h2>
+    </div>
+    <div class="promo-grid">
+      <div class="promo-card">
+        <span class="label">Promo 1</span>
+        <h3>Hair Rebond, Any Length</h3>
+        <div class="price">₱999</div>
+        <p style="color:var(--paper);opacity:0.7;font-size:13px;">Smooth. Straight. Stunning.</p>
+      </div>
+      <div class="promo-card">
+        <span class="label">Promo 2</span>
+        <h3>Hair Color with Treatment, Any Length</h3>
+        <div class="price">₱599</div>
+        <p style="color:var(--paper);opacity:0.7;font-size:13px;">Vibrant color. Healthy hair.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">A Closer Look</span>
+      <h2>Inside Imperial</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="tile"><img src="assets/gallery-1.jpg" alt="Pedicure and foot spa area at Imperial Salon"></div>
+      <div class="tile"><img src="assets/gallery-2.jpg" alt="Nail service area at Imperial Salon"></div>
+      <div class="tile"><img src="assets/gallery-3.jpg" alt="Hair styling in progress at Imperial Salon"></div>
+      <div class="tile"><img src="assets/gallery-4.jpg" alt="Manicure and pedicure lounge at Imperial Salon"></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Be Part of Our Beautiful Family</span>
+      <h2>Book Your Appointment</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="item">
+          <span class="eyebrow">Location</span>
+          <p>#921 9th St., Lakandula, Mabalacat City</p>
+        </div>
+        <div class="item">
+          <span class="eyebrow">Call / Text</span>
+          <p><a href="tel:+639950950578" style="text-decoration:underline;">0995 095 0578</a></p>
+        </div>
+        <div class="item">
+          <span class="eyebrow">Email</span>
+          <p>cortez.mackey27@gmail.com</p>
+        </div>
+        <div class="item">
+          <span class="eyebrow">Facebook</span>
+          <p>Message us on <a href="https://www.facebook.com/profile.php?id=61552176507360" target="_blank" rel="noopener" style="text-decoration:underline;">Facebook</a></p>
+        </div>
+      </div>
+      <div class="art-box">
+        <iframe
+          src="https://www.google.com/maps?q=921+9th+St,+Lakandula,+Mabalacat+City,+Pampanga&output=embed"
+          width="100%" height="320" style="border:0;" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Imperial Salon & Spa location">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>© 2026 Imperial Salon &amp; Spa. All rights reserved.</span>
+  <span>Beauty. Confidence. Imperial.</span>
+</footer>
+
+<script>
+const sections = document.querySelectorAll('section[id]');
+const railItems = document.querySelectorAll('.rail-item');
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    const id = entry.target.getAttribute('id');
+    const railItem = document.querySelector(`.rail-item[data-target="${id}"]`);
+    if(entry.isIntersecting){
+      railItems.forEach(r=>r.classList.remove('active'));
+      if(railItem) railItem.classList.add('active');
+    }
+  });
+},{rootMargin:'-40% 0px -40% 0px'});
+sections.forEach(s=>observer.observe(s));
+railItems.forEach(item=>{
+  item.addEventListener('click',()=>{
+    const target = document.getElementById(item.dataset.target);
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+
+</body>
+</html>
