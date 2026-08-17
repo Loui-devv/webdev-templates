@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweet Bites by LJ — Apalit, Pampanga</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#3B2416;
+  --paper:#FBF6EE;
+  --paper-2:#F1E4D3;
+  --accent:#C9784A;
+  --accent-dark:#A15E37;
+  --gold:#D68FA0;
+  --muted:#7A6753;
+  --line:rgba(59,36,22,0.14);
+  --font-display:'Fraunces', serif;
+  --font-body:'Inter', sans-serif;
+  --font-mono:'Space Mono', monospace;
+  --radius:2px;
+  --max-w:1180px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+.wrap{max-width:var(--max-w);margin:0 auto;padding:0 32px;}
+@media(max-width:640px){.wrap{padding:0 20px;}}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.1;letter-spacing:-0.01em;}
+.eyebrow{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent);}
+a:focus-visible, button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}*{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}}
+
+.rail{position:fixed;right:28px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:18px;align-items:flex-end;}
+.rail-item{display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;color:var(--muted);transition:color .25s ease;}
+.rail-item .dot{width:6px;height:6px;border-radius:50%;background:var(--muted);transition:all .25s ease;}
+.rail-item.active{color:var(--ink);}
+.rail-item.active .dot{background:var(--accent);width:9px;height:9px;box-shadow:0 0 0 3px rgba(201,120,74,0.18);}
+.rail-item .label{opacity:0;transform:translateX(6px);transition:all .2s ease;white-space:nowrap;}
+.rail-item:hover .label,.rail-item.active .label{opacity:1;transform:translateX(0);}
+@media(max-width:900px){.rail{display:none;}}
+
+.topbar{position:sticky;top:0;z-index:90;background:rgba(251,246,238,0.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 32px;max-width:var(--max-w);margin:0 auto;flex-wrap:nowrap;}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
+.brand img{width:38px;height:38px;border-radius:50%;flex-shrink:0;object-fit:cover;}
+.topbar-cta{font-family:var(--font-mono);font-size:12px;padding:10px 18px;background:var(--accent);color:#fff;border-radius:var(--radius);transition:background .2s ease;white-space:nowrap;flex-shrink:0;}
+.topbar-cta:hover{background:var(--accent-dark);}
+@media(max-width:480px){
+  .topbar-inner{padding:10px 16px;gap:8px;}
+  .brand{font-size:13px;gap:6px;}
+  .brand img{width:26px;height:26px;}
+  .topbar-cta{font-size:10.5px;padding:8px 12px;}
+  .topbar-cta .arrow{display:none;}
+}
+
+.hero{padding:90px 0 70px;}
+.hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;}
+.hero h1{font-size:clamp(30px,5vw,52px);margin:16px 0 20px;}
+.hero p{font-size:17px;color:var(--muted);margin-bottom:26px;}
+.cta-group{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px;}
+.btn-primary{font-family:var(--font-mono);font-size:13px;background:var(--accent);color:#fff;padding:14px 26px;border-radius:var(--radius);transition:background .2s ease;text-align:center;}
+.btn-primary:hover{background:var(--accent-dark);}
+.btn-secondary{font-family:var(--font-mono);font-size:13px;padding:14px 26px;border:1px solid var(--ink);border-radius:var(--radius);transition:all .2s ease;text-align:center;}
+.btn-secondary:hover{background:var(--ink);color:var(--paper);}
+.hero-photo{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);}
+.hero-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:9/7;}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:32px;}}
+
+.badges{display:flex;gap:10px;flex-wrap:wrap;}
+.badge{display:flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;color:var(--muted);border:1px solid var(--line);padding:7px 12px;border-radius:20px;background:var(--paper-2);white-space:nowrap;}
+.badge .chk{color:var(--accent);font-weight:700;}
+@media(max-width:480px){.cta-group{flex-direction:column;} .cta-group a{width:100%;} .badge{font-size:10px;padding:6px 10px;}}
+
+section{padding:76px 0;border-top:1px solid var(--line);}
+.section-head{max-width:600px;margin-bottom:44px;}
+.section-head h2{font-size:clamp(26px,3.6vw,36px);margin-top:12px;}
+@media(max-width:480px){section{padding:52px 0;} .section-head{margin-bottom:28px;}}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.about-grid p{color:var(--muted);font-size:16px;margin-bottom:16px;}
+.art-box{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr;gap:32px;}}
+
+.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
+.price-col{background:var(--paper);padding:28px 26px;}
+.price-col h3{font-family:var(--font-mono);font-size:13px;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px;color:var(--accent);}
+.price-col .sub{font-size:12.5px;color:var(--muted);margin-bottom:16px;}
+.price-row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid var(--line);font-size:14.5px;}
+.price-row:first-of-type{border-top:none;}
+.price-row .amt{font-family:var(--font-mono);color:var(--muted);white-space:nowrap;}
+@media(max-width:700px){.price-grid{grid-template-columns:1fr;}}
+
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.gallery-grid img{border-radius:var(--radius);width:100%;height:100%;object-fit:cover;transition:transform .3s ease;}
+.gallery-grid .tile{aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--line);}
+.gallery-grid .tile:hover img{transform:scale(1.05);}
+@media(max-width:800px){.gallery-grid{grid-template-columns:1fr 1fr;}}
+
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+.contact-info .item{margin-bottom:20px;}
+.contact-info .item .eyebrow{display:block;margin-bottom:4px;}
+.contact-info .item p{font-size:16px;}
+@media(max-width:800px){.contact-grid{grid-template-columns:1fr;}}
+
+footer{padding:36px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-family:var(--font-mono);font-size:12px;color:var(--muted);flex-wrap:wrap;gap:12px;}
+@media(max-width:480px){footer{flex-direction:column;align-items:flex-start;font-size:11px;}}
+</style>
+</head>
+<body>
+
+<nav class="rail" id="rail">
+  <a class="rail-item" data-target="hero"><span class="label">Start</span><span class="dot"></span></a>
+  <a class="rail-item" data-target="about"><span class="label">About</span><span class="dot"></span></a>
+  <a class="rail-item" data-target="menu"><span class="label">Menu</span><span class="dot"></span></a>
+  <a class="rail-item" data-target="gallery"><span class="label">Gallery</span><span class="dot"></span></a>
+  <a class="rail-item" data-target="contact"><span class="label">Contact</span><span class="dot"></span></a>
+</nav>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><img src="assets/logo.jpg" alt="Sweet Bites by LJ logo">Sweet Bites <span style="color:var(--accent);">by LJ</span></div>
+    <a href="https://www.facebook.com/share/1DKR3EZYMH/" target="_blank" rel="noopener" class="topbar-cta">Order Now <span class="arrow">→</span></a>
+  </div>
+</div>
+
+<section id="hero" class="hero" style="border-top:none;">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-inner">
+        <span class="eyebrow">Apalit, Pampanga · Home-Baked Cookies &amp; Treats</span>
+        <h1>Fresh from oven, straight to your heart.</h1>
+        <p>Soft, gooey, scoopable cookies, banana bread, and graham puffs — baked fresh in small batches, made to sweeten your day.</p>
+        <div class="cta-group">
+          <a href="https://www.facebook.com/share/1DKR3EZYMH/" target="_blank" rel="noopener" class="btn-primary">Order Now</a>
+          <a href="#menu" class="btn-secondary">See the Menu</a>
+        </div>
+        <div class="badges">
+          <span class="badge"><span class="chk">✓</span> Baked Fresh Daily</span>
+          <span class="badge"><span class="chk">✓</span> Small-Batch</span>
+          <span class="badge"><span class="chk">✓</span> Apalit, Pampanga</span>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="assets/hero-photo.jpg" alt="Assorted freshly baked cookies including matcha, oreo, and s'mores flavors">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <span class="eyebrow">About Us</span>
+        <h2 style="margin:12px 0 18px;">Small batch, big heart.</h2>
+        <p>Sweet Bites by LJ started as a home kitchen project and grew into a small bakery serving Apalit and nearby areas. Every cookie, banana bread, and graham puff is baked fresh — no mass production, just careful small batches.</p>
+        <p>From classic chocolate chip to matcha lava and campfire s'mores, every flavor is made to be shared, gifted, or enjoyed solo — whatever the day calls for.</p>
+      </div>
+      <div class="art-box">
+        <img src="assets/about-photo.jpg" alt="Sweet Bites by LJ cookie tubs wrapped and ready for order">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What We Bake</span>
+      <h2>Menu &amp; Prices</h2>
+    </div>
+    <div class="price-grid">
+      <div class="price-col">
+        <h3>Scoopable Cookies</h3>
+        <div class="sub">Warm, gooey, scooped straight from the tub</div>
+        <div class="price-row"><span>The OG Scoop — chocolate chip</span><span class="amt">₱89</span></div>
+        <div class="price-row"><span>The Ruby Scoop — red velvet, white choc</span><span class="amt">₱95</span></div>
+        <div class="price-row"><span>The Midnight Scoop — dark cocoa</span><span class="amt">₱95</span></div>
+        <div class="price-row"><span>Matcha Lava</span><span class="amt">₱40</span></div>
+        <div class="price-row"><span>Campfire S'more</span><span class="amt">₱45</span></div>
+      </div>
+      <div class="price-col">
+        <h3>Cookie Series</h3>
+        <div class="sub">Per piece = 50–55g</div>
+        <div class="price-row"><span>Chocolate Chip Classic</span><span class="amt">₱35 / 3 for ₱100</span></div>
+        <div class="price-row"><span>Double Chocolate</span><span class="amt">₱40 / 3 for ₱115</span></div>
+        <div class="price-row"><span>Red Velvet</span><span class="amt">₱40 / 3 for ₱115</span></div>
+        <div class="price-row"><span>Cookies &amp; Cream</span><span class="amt">₱45 / 3 for ₱130</span></div>
+        <div class="price-row"><span>Assorted, choose 3 flavors</span><span class="amt">₱120</span></div>
+      </div>
+      <div class="price-col">
+        <h3>Banana Bread Series</h3>
+        <div class="sub">Per tub = 350–360g</div>
+        <div class="price-row"><span>Classic Banana Bread</span><span class="amt">₱119</span></div>
+        <div class="price-row"><span>Chocolate Chip Banana Bread</span><span class="amt">₱139</span></div>
+        <div class="price-row"><span>Choco Almond Banana Bread</span><span class="amt">₱159</span></div>
+      </div>
+      <div class="price-col">
+        <h3>Graham Puff</h3>
+        <div class="sub">Chocolate, Mango, Ube, or Classic — with your choice of topping</div>
+        <div class="price-row"><span>Box of 6</span><span class="amt">₱50</span></div>
+        <div class="price-row"><span>Box of 8</span><span class="amt">₱70</span></div>
+        <div class="price-row"><span>Box of 14</span><span class="amt">₱120</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">A Closer Look</span>
+      <h2>Gallery</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="tile"><img src="assets/gallery-1.jpg" alt="Freshly baked cookies cooling on a rack"></div>
+      <div class="tile"><img src="assets/gallery-2.jpg" alt="Box of assorted Sweet Bites cookies"></div>
+      <div class="tile"><img src="assets/gallery-3.jpg" alt="Scoopable cookie tubs with wooden spoons"></div>
+      <div class="tile"><img src="assets/gallery-4.jpg" alt="One box, six flavors of Sweet Bites cookies"></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Get In Touch</span>
+      <h2>Order Your Sweet Bites</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="item">
+          <span class="eyebrow">Location</span>
+          <p>Apalit, Pampanga</p>
+        </div>
+        <div class="item">
+          <span class="eyebrow">Facebook</span>
+          <p>Message us on <a href="https://www.facebook.com/share/1DKR3EZYMH/" target="_blank" rel="noopener" style="text-decoration:underline;">Facebook</a> to order</p>
+        </div>
+      </div>
+      <div class="art-box" style="padding:28px;">
+        <p style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;color:var(--accent);text-transform:uppercase;margin-bottom:12px;">Our Promise</p>
+        <h3 style="font-size:20px;margin-bottom:10px;">"Fresh from oven, straight to your heart."</h3>
+        <p style="color:var(--muted);font-size:14px;">Every order is baked fresh in small batches — no shortcuts, just real ingredients and careful baking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>© 2026 Sweet Bites by LJ. All rights reserved.</span>
+  <span>Fresh from oven, straight to your heart.</span>
+</footer>
+
+<script>
+const sections = document.querySelectorAll('section[id]');
+const railItems = document.querySelectorAll('.rail-item');
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    const id = entry.target.getAttribute('id');
+    const railItem = document.querySelector(`.rail-item[data-target="${id}"]`);
+    if(entry.isIntersecting){
+      railItems.forEach(r=>r.classList.remove('active'));
+      if(railItem) railItem.classList.add('active');
+    }
+  });
+},{rootMargin:'-40% 0px -40% 0px'});
+sections.forEach(s=>observer.observe(s));
+railItems.forEach(item=>{
+  item.addEventListener('click',()=>{
+    const target = document.getElementById(item.dataset.target);
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+
+</body>
+</html>
